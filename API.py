@@ -25,12 +25,30 @@ Sample Usage:
 'Manchester United FC'
 >>> mufc['coach']['name']
 'Erik ten Hag'
+
+# List comprehension for player names
 >>> [ x['name'] for x in mufc['squad']]
 ['David De Gea', 'Tom Heaton', 'Harry Maguire', 'Raphaël Varane', 'Victor Nilsson-Lindelöf', 'Axel Tuanzebe',
  'Tyrell Malacia', 'Phil Jones', 'Luke Shaw', 'Eric Bailly', 'Aaron Wan-Bissaka', 'Diogo Dalot', 'Lisandro Martínez',
  'Brandon Williams', 'Teden Mengi', 'Jadon Sancho', 'Fred', 'Bruno Fernandes', 'Christian Eriksen', 'Donny van de Beek',
  'Scott McTominay', 'Tahith Chong', 'James Garner', 'Anthony Elanga', 'Cristiano Ronaldo', 'Marcus Rashford',
  'Anthony Martial', 'Mason Greenwood', 'Facundo Pellistri', 'Amad Diallo', 'Shola Shoretire', 'Alejandro Garnacho']
+
+# Dictionary comprehension for player positions
+>>> positions = { x['name']: x['position'] for x in mufc['squad'] }
+>>> positions['Marcus Rashford']
+'Offence'
+
+# Get Players by position
+>>> print([x for x,y  in positions.items() if y == 'Goalkeeper'])
+['David De Gea', 'Tom Heaton']
+>>> print([x for x,y  in positions.items() if y == 'Defence'])
+['Harry Maguire', 'Raphaël Varane', 'Victor Nilsson-Lindelöf', 'Axel Tuanzebe', 'Tyrell Malacia', 'Phil Jones', 'Luke Shaw', 'Eric Bailly', 'Aaron Wan-Bissaka', 'Diogo Dalot', 'Lisandro Martínez', 'Brandon Williams', 'Teden Mengi']
+>>> print([x for x,y  in positions.items() if y == 'Midfield'])
+['Jadon Sancho', 'Fred', 'Bruno Fernandes', 'Christian Eriksen', 'Donny van de Beek', 'Scott McTominay', 'Tahith Chong', 'James Garner', 'Anthony Elanga']
+>>> print([x for x,y  in positions.items() if y == 'Offence'])
+['Cristiano Ronaldo', 'Marcus Rashford', 'Anthony Martial', 'Mason Greenwood', 'Facundo Pellistri', 'Amad Diallo', 'Shola Shoretire']
+
 """
 
 import json
